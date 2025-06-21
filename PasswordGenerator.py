@@ -13,10 +13,10 @@ def load_word_list(filepath="wordlist.txt") -> list:
             for line in f:
                 word = line.strip()
                 if word: words.append(word)
-        if not words and filepath == "wordlist.txt":
+        if not words and filepath == "wordlist.txt": 
             print(f"Warning: Default wordlist file '{filepath}' was empty or contained no valid words.")
     except FileNotFoundError:
-        if filepath == "wordlist.txt":
+        if filepath == "wordlist.txt": 
             print(f"Error: Default wordlist file '{filepath}' not found. Passphrase generation will be disabled.")
     except IOError as e:
         if filepath == "wordlist.txt":
@@ -120,7 +120,7 @@ password_display_entry, copy_button, strength_display_label = None, None, None
 
 # --- UI Command Functions ---
 def display_generated_password():
-    global strength_display_label
+    global strength_display_label 
     strength_display_label.config(text="", fg="black")
     try:
         length = int(length_entry.get())
@@ -165,15 +165,15 @@ def copy_to_clipboard():
 
 # --- UI Setup ---
 def setup_ui(root_window):
-    global root, length_entry, uppercase_var, lowercase_var, digits_var, symbols_var
+    global root, length_entry, uppercase_var, lowercase_var, digits_var, symbols_var 
     global password_display_entry, copy_button, num_words_entry, strength_display_label
-    root = root_window
-    root_window.title("Secure Password & Passphrase Generator"); root_window.geometry("500x580")
+    root = root_window 
+    root_window.title("Secure Password & Passphrase Generator"); root_window.geometry("500x580") 
 
     # Password Options
     pwd_frame = LabelFrame(root_window, text="Standard Password Options", padx=10, pady=10)
     pwd_frame.pack(pady=10, padx=10, fill="x")
-
+    
     length_label_frame = Frame(pwd_frame) # Standard creation for length entry
     Label(length_label_frame, text="Password Length (8-128):").pack(side=LEFT, padx=(0,5))
     length_entry = Entry(length_label_frame, width=5)
@@ -207,18 +207,18 @@ def setup_ui(root_window):
     password_display_entry.pack(side=LEFT, expand=True, fill="x", padx=(0,5))
     copy_button = Button(disp_fr, text="Copy", command=copy_to_clipboard, state=DISABLED); copy_button.pack(side=LEFT)
     strength_display_label = Label(res_frame, text="", font=("Arial", 10)); strength_display_label.pack(pady=(5,0))
-
-    load_settings()
+    
+    load_settings() 
 
 # --- Main Application Execution ---
 if __name__ == "__main__":
-    root_tk = Tk()
+    root_tk = Tk() 
     setup_ui(root_tk) # This now also assigns to the global 'root'
-
+    
     # Set the close protocol
     root_tk.protocol("WM_DELETE_WINDOW", on_closing)
-
+    
     if WORDS: print(f"Loaded {len(WORDS)} words.")
     else: print("Wordlist empty/not loaded.")
-
+    
     root_tk.mainloop()
